@@ -1,0 +1,48 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  data:
+    # Every client and run against its schema, and every summary.json against
+    # the raw output it was generated from. No number reaches the site that the
+    # instrument did not write.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+      - name: Validate clients and results
+        run: python3 harness/validate.py
+      - name: Harness tests
+        run: python3 -m unittest discover -s harness/tests -v
+      - name: Shell syntax
+        run: |
+          bash -n harness/run.sh harness/server.sh mailbench
+          for f in clients/*.sh; do bash -n "$f"; done
+
+  instrument:
+    # The Swift instrument and calibration target compile on macOS.
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: swiftc -O harness/measure.swift -o /tmp/measure
+      - run: swiftc -O harness/calibrate.swift -o /tmp/calibrate
+      - name: Harness tests on macOS
+        run: python3 -m unittest discover -s harness/tests -v
+
+  site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx tsc --noEmit
+      - run: npm run build

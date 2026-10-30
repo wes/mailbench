@@ -1,0 +1,38 @@
+{
+  "$schema": "../schema/client.schema.json",
+  "id": "myclient",
+  "name": "My Client",
+  "vendor": "Who makes it",
+  "homepage": "https://example.com",
+  "platform": "macos",
+  "source": "closed",
+  "maintainers": ["your-github-handle"],
+  "vendor_maintained": false,
+  "install": "How to install it. `code` in backticks is shown as code.",
+  "app": {
+    "path": "/Applications/My Client.app",
+    "bundle_id": "com.example.myclient",
+    "process": "My Client",
+    "window_title": "Inbox"
+  },
+  "account": [
+    "How to add the benchmark account: 127.0.0.1, the corpus's port, no encryption, bench@example.com / bench."
+  ],
+  "parity": [
+    "Any setting that has to change so it keeps the whole mailbox locally. Nothing else may be changed."
+  ],
+  "reset": [
+    "How to empty its store for a first-sync measurement."
+  ],
+  "store": "~/Library/Application Support/My Client",
+  "layout": {
+    "status": "unverified",
+    "note": "What its window looks like at 1400 x 900, and anything odd about it.",
+    "row": [420, 300],
+    "row_dy": 64,
+    "reader": [780, 90, 590, 760],
+    "list": [220, 70, 540, 800],
+    "search": { "field": [1250, 20], "clear": "cmd+a,backspace", "leave": "escape" }
+  },
+  "caveats": []
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "../schema/client.schema.json",
+  "id": "airmail",
+  "name": "Airmail",
+  "vendor": "Bloop",
+  "homepage": "https://airmailapp.com",
+  "platform": "macos",
+  "source": "closed",
+  "maintainers": [],
+  "vendor_maintained": false,
+  "install": "From the Mac App Store.",
+  "app": {
+    "path": "/Applications/Airmail.app",
+    "bundle_id": "it.bloop.airmail2",
+    "process": "Airmail",
+    "window_title": "Airmail"
+  },
+  "account": [
+    "Add an IMAP account by hand: host 127.0.0.1, the corpus's port, no encryption. Airmail checks SMTP after IMAP; the sink on 10025 answers it."
+  ],
+  "parity": [],
+  "reset": [],
+  "layout": {
+    "status": "unverified",
+    "note": "Placeholder coordinates, never checked by snapshot. Needs someone with Airmail to run `./mailbench snapshot airmail` and fix them.",
+    "row": [520, 150],
+    "row_dy": 95,
+    "reader": [820, 140, 560, 700],
+    "list": [350, 60, 340, 800]
+  },
+  "caveats": []
+}

@@ -1,0 +1,22 @@
+{
+  "$comment": "The published corpora. generate_corpus.py --verify checks a Maildir against these; a result is comparable with another only when their digests match. Regenerating with the default seed and epoch must reproduce these exactly, on any machine.",
+  "version": "mailbench-v1",
+  "seed": 24301,
+  "epoch": 1790812800,
+  "corpora": {
+    "50k": {
+      "messages": 50000,
+      "bytes": 50849588,
+      "port": 10143,
+      "digest": "sha256:b0cab46ea8aed77655e77b738f3f7381ec93b0686d3bf624e77c1835fc3fbef3",
+      "folders": { "INBOX": 29890, "Sent": 7617, "Archive": 7448, "Lists/rust": 2556, "Junk": 1451, "Trash": 1038, "Drafts": 0 }
+    },
+    "250k": {
+      "messages": 250000,
+      "bytes": 254520842,
+      "port": 10144,
+      "digest": "sha256:593f7f41bb298ea4d42c4f3e1b79b4f02a1a8c8e2ea8f1a5c7ab59eb03373f2e",
+      "folders": { "INBOX": 149460, "Sent": 37906, "Archive": 37614, "Lists/rust": 12472, "Junk": 7461, "Trash": 5087, "Drafts": 0 }
+    }
+  }
+}

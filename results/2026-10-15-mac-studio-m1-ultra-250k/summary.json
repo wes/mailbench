@@ -1,0 +1,240 @@
+{
+  "$comment": "Imported: transcribed by hand from the page in run.json's source.url. Every other run's summary.json is generated from its raw/ output.",
+  "run": "2026-10-15-mac-studio-m1-ultra-250k",
+  "source": "imported",
+  "display_hz": 60,
+  "clients": [
+    {
+      "id": "applemail",
+      "name": "Apple Mail",
+      "version": "16.0",
+      "measured_on": "2026-10-15",
+      "metrics": {
+        "open": {
+          "value": 154,
+          "runs": 20
+        },
+        "next": {
+          "value": 180,
+          "runs": 20
+        },
+        "search": {
+          "value": 254,
+          "runs": 20
+        },
+        "launch": {
+          "value": 724,
+          "runs": 5
+        },
+        "quit": {
+          "value": 116,
+          "runs": 5
+        },
+        "scroll": {
+          "value": 343,
+          "runs": 10
+        },
+        "memory": {
+          "value": 344
+        },
+        "cpu": {
+          "value": 24.3
+        }
+      }
+    },
+    {
+      "id": "canary",
+      "name": "Canary Mail",
+      "version": "5.26",
+      "measured_on": "2026-10-15",
+      "metrics": {
+        "open": {
+          "value": 121,
+          "runs": 20
+        },
+        "next": {
+          "value": 171,
+          "runs": 20
+        },
+        "search": {
+          "value": 524,
+          "runs": 20
+        },
+        "launch": {
+          "value": 1737,
+          "runs": 5
+        },
+        "quit": {
+          "value": 74,
+          "runs": 5
+        },
+        "scroll": {
+          "value": 328,
+          "runs": 10
+        },
+        "memory": {
+          "value": 318
+        },
+        "cpu": {
+          "value": 163
+        }
+      }
+    },
+    {
+      "id": "mailflare",
+      "name": "Mailflare",
+      "version": "1.6",
+      "measured_on": "2026-10-30",
+      "metrics": {
+        "open": {
+          "value": 158,
+          "runs": 20
+        },
+        "next": {
+          "value": 507,
+          "runs": 20
+        },
+        "search": {
+          "value": 458,
+          "runs": 20
+        },
+        "launch": {
+          "value": 520,
+          "runs": 5
+        },
+        "quit": {
+          "value": 40,
+          "runs": 5
+        },
+        "scroll": {
+          "value": 331,
+          "runs": 10
+        },
+        "memory": {
+          "value": 143
+        },
+        "cpu": {
+          "value": 0.9
+        }
+      }
+    },
+    {
+      "id": "mailmate",
+      "name": "MailMate",
+      "version": "1.13.2",
+      "measured_on": "2026-10-15",
+      "metrics": {
+        "open": {
+          "value": 139,
+          "runs": 20
+        },
+        "next": {
+          "value": 454,
+          "runs": 20
+        },
+        "search": {
+          "value": 440,
+          "runs": 20
+        },
+        "launch": {
+          "value": 3376,
+          "runs": 5
+        },
+        "quit": {
+          "value": 341,
+          "runs": 5
+        },
+        "scroll": {
+          "value": 337,
+          "runs": 10
+        },
+        "memory": {
+          "value": 548
+        },
+        "cpu": {
+          "value": 0.1
+        }
+      }
+    },
+    {
+      "id": "spool",
+      "name": "Spool",
+      "version": "0.1.11",
+      "measured_on": "2026-10-15",
+      "metrics": {
+        "open": {
+          "value": 56,
+          "runs": 20
+        },
+        "next": {
+          "value": 54,
+          "runs": 20
+        },
+        "search": {
+          "value": 134,
+          "runs": 20
+        },
+        "launch": {
+          "value": 321,
+          "runs": 5
+        },
+        "quit": {
+          "value": 42,
+          "runs": 5
+        },
+        "scroll": {
+          "value": 321,
+          "runs": 10
+        },
+        "memory": {
+          "value": 129
+        },
+        "cpu": {
+          "value": 0.6
+        },
+        "sync": {
+          "value": 39,
+          "method": "client-store-count"
+        }
+      }
+    },
+    {
+      "id": "thunderbird",
+      "name": "Thunderbird",
+      "version": "158",
+      "measured_on": "2026-10-15",
+      "metrics": {
+        "open": {
+          "value": 74,
+          "runs": 20
+        },
+        "next": {
+          "value": 339,
+          "runs": 20
+        },
+        "search": {
+          "value": 433,
+          "runs": 20
+        },
+        "launch": {
+          "value": 3603,
+          "runs": 5
+        },
+        "quit": {
+          "value": 128,
+          "runs": 5
+        },
+        "scroll": {
+          "value": 580,
+          "runs": 10
+        },
+        "memory": {
+          "value": 1040
+        },
+        "cpu": {
+          "value": 2.5
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "../schema/client.schema.json",
+  "id": "thunderbird",
+  "name": "Thunderbird",
+  "vendor": "MZLA Technologies",
+  "homepage": "https://www.thunderbird.net",
+  "platform": "macos",
+  "source": "open",
+  "maintainers": ["wes"],
+  "vendor_maintained": false,
+  "install": "`brew install --cask thunderbird`.",
+  "app": {
+    "path": "/Applications/Thunderbird.app",
+    "bundle_id": "org.mozilla.thunderbird",
+    "process": "thunderbird",
+    "window_title": "Inbox"
+  },
+  "account": [
+    "Account Settings ▸ Add Mail Account ▸ Configure manually. Connection security None, Authentication Normal password."
+  ],
+  "parity": [
+    "Under Synchronisation & Storage, turn on \"Keep messages in all folders for this account on this computer\". Without it Thunderbird syncs headers only and wins by not doing the work.",
+    "Set mail.server.default.max_cached_connections to match the other clients (5)."
+  ],
+  "reset": [
+    "Remove the Bench account in Account Settings and quit Thunderbird.",
+    "Press Enter here, then add the account again, with the setting above."
+  ],
+  "store": "~/Library/Thunderbird/Profiles/*.default-release/ImapMail",
+  "layout": {
+    "status": "verified",
+    "verified": { "version": "144", "os": "macOS 15.4", "date": "2026-10" },
+    "note": "Default \"cards\" layout with the Quick Filter bar left open; it stays open across launches, and the list sits below it. 66pt cards, reader to the right. The search field is cleared with its own × and never with select-all and Backspace, and never closed with Escape: Backspace in Thunderbird's message list deletes.",
+    "row": [520, 150],
+    "row_dy": 66,
+    "reader": [820, 60, 560, 800],
+    "list": [250, 160, 550, 710],
+    "search": {
+      "field": [400, 101],
+      "clear": "click@484:101,click@400:101",
+      "leave": "click@400:101"
+    }
+  },
+  "caveats": [
+    {
+      "metric": "search",
+      "text": "The Quick Filter, Thunderbird's search-as-you-type, looks at sender, recipients and subject by default but not the message body, which is less work than full-text search."
+    },
+    {
+      "text": "Thunderbird keeps no offline copy of Junk and Trash by default; the other 95% of the mailbox it holds in full."
+    }
+  ]
+}

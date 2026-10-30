@@ -1,0 +1,37 @@
+{
+  "$schema": "../schema/client.schema.json",
+  "id": "mailflare",
+  "name": "Mailflare",
+  "platform": "macos",
+  "source": "closed",
+  "maintainers": [],
+  "vendor_maintained": false,
+  "install": "",
+  "app": {},
+  "account": [],
+  "parity": [
+    "By design Mailflare fetches only the newest 50 messages in each folder, and older mail from the server as the list is scrolled. It cannot be made to hold the whole mailbox, so it never does the same job as a client that does."
+  ],
+  "reset": [],
+  "layout": {
+    "status": "missing",
+    "note": "Measured in October 2026 with a definition that was never committed. Its bundle id, window and coordinates need adding before it can be measured again."
+  },
+  "caveats": [
+    {
+      "text": "Holds a few hundred messages, not the mailbox: the newest 50 in each folder, more as the list is scrolled. Its memory, launch, search and idle CPU are those of a small local copy."
+    },
+    {
+      "metric": "search",
+      "text": "Searches subject, sender and preview in the messages it has downloaded, never the full text or the server, and waits 200 ms after a keystroke before it starts."
+    },
+    {
+      "metric": "open",
+      "text": "Opening a message downloads its body from the server the first time, where the other clients already have it."
+    },
+    {
+      "metric": "cpu",
+      "text": "Includes re-checking the newest 50 messages in every folder once a minute."
+    }
+  ]
+}

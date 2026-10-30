@@ -1,0 +1,39 @@
+# neomutt against the benchmark server.
+#
+# In the comparison for the floor, not the middle: a terminal client with no
+# compositor, no layout engine and no message list to virtualize is roughly
+# the fastest a mail client can be on this hardware. The gap between it and a
+# windowed client is the cost of being a window.
+#
+#   neomutt -F harness/neomuttrc
+#
+# Its own directories, so nothing here can find or touch a real account.
+
+set folder            = "imap://127.0.0.1:10143/"
+set spoolfile         = "+INBOX"
+set record            = "+Sent"
+set postponed         = "+Drafts"
+set imap_user         = "bench"
+set imap_pass         = "bench"
+
+set header_cache      = "~/mailbench/neomutt/headers"
+set message_cachedir  = "~/mailbench/neomutt/bodies"
+set tmpdir            = "~/mailbench/neomutt/tmp"
+
+# The server is on loopback with no TLS, which is the whole point
+# of it. Without this neomutt refuses to log in.
+set ssl_force_tls     = no
+set ssl_starttls      = no
+
+# Matching what the GUI clients are doing rather than what neomutt would
+# prefer: they all keep a connection open and they all fetch headers eagerly.
+set imap_idle         = yes
+set imap_keepalive    = 300
+set mail_check        = 60
+set timeout           = 15
+
+# No colours and no sidebar. The instrument watches a rectangle for a change,
+# and a clock in the status line that ticks once a second is a change.
+set status_format     = "neomutt"
+unset markers
+set sort              = reverse-date-received

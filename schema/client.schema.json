@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mailben.ch/schema/client.schema.json",
+  "title": "A mail client, as the harness measures it",
+  "description": "clients/<id>.json. See clients/README.md for what each field is for and how to find the coordinates.",
+  "type": "object",
+  "required": ["id", "name", "platform", "source", "maintainers", "vendor_maintained", "app", "layout"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$", "description": "Matches the file name." },
+    "name": { "type": "string", "minLength": 1 },
+    "vendor": { "type": "string" },
+    "homepage": { "type": "string", "pattern": "^https://" },
+    "platform": { "enum": ["macos"] },
+    "source": { "enum": ["open", "closed"], "description": "Whether the client's own source is public." },
+    "maintainers": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[A-Za-z0-9-]+$" },
+      "description": "GitHub handles of whoever keeps this definition right. Empty means nobody yet."
+    },
+    "vendor_maintained": {
+      "type": "boolean",
+      "description": "True when a maintainer works on or for the client itself. Shown next to its results."
+    },
+    "install": { "type": "string" },
+    "app": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "path": { "type": "string", "description": "The .app bundle." },
+        "bundle_id": { "type": "string", "description": "How the instrument finds the window. Required for launch and quit." },
+        "app_name": { "type": "string", "description": "For a client with no bundle of its own (a terminal client): the host app's name." },
+        "process": { "type": "string", "description": "Process name, for memory, resizing and quitting." },
+        "window_title": { "type": "string", "description": "A substring of the main window's title, when the client has several windows." },
+        "version_command": { "type": "string", "description": "Shell that prints the version, for a client without a bundle." }
+      }
+    },
+    "launch_env": {
+      "type": "object",
+      "additionalProperties": { "type": "string" },
+      "description": "Environment to launch with. {profile} is the client's benchmark profile directory."
+    },
+    "account": { "type": "array", "items": { "type": "string" }, "description": "How to add the benchmark account." },
+    "parity": { "type": "array", "items": { "type": "string" }, "description": "Settings that must be changed so the client holds the whole mailbox, as every other client does." },
+    "reset": { "type": "array", "items": { "type": "string" }, "description": "How to empty its store, for a first-sync measurement." },
+    "store": { "type": "string", "description": "Where it keeps the benchmark account. ~ and globs allowed; {profile} as above." },
+    "layout": {
+      "type": "object",
+      "required": ["status"],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": ["verified", "unverified", "missing"],
+          "description": "verified: checked by snapshot at the version given. unverified: never checked. missing: cannot be measured yet."
+        },
+        "verified": {
+          "type": "object",
+          "required": ["version", "os", "date"],
+          "additionalProperties": false,
+          "properties": {
+            "version": { "type": "string" },
+            "os": { "type": "string" },
+            "date": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}(-[0-9]{2})?$" }
+          }
+        },
+        "note": { "type": "string" },
+        "row": { "$ref": "#/$defs/point", "description": "A message row in the list." },
+        "row_dy": { "type": "integer", "description": "Distance to a second row; clicks alternate between the two." },
+        "reader": { "$ref": "#/$defs/rect", "description": "Where the message body paints. Not the whole window." },
+        "list": { "$ref": "#/$defs/rect", "description": "The message list." },
+        "search": {
+          "type": "object",
+          "required": ["field"],
+          "additionalProperties": false,
+          "properties": {
+            "field": { "$ref": "#/$defs/point" },
+            "submit": { "type": "boolean", "description": "Press Return after the query (for clients that do not search as you type)." },
+            "clear": { "type": "string", "description": "Steps that empty the field once it has focus, e.g. cmd+a,backspace." },
+            "leave": { "type": "string", "description": "One step that leaves the field: a key, or click@x:y." },
+            "prepare": { "type": "string", "description": "Replaces click-and-clear before each search, for a field that needs its own sequence." },
+            "reset": { "type": "string", "description": "One step that replaces the whole of clearing the search." }
+          }
+        }
+      }
+    },
+    "caveats": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["text"],
+        "additionalProperties": false,
+        "properties": {
+          "metric": { "type": "string", "description": "A key from schema/metrics.json, when the caveat is about one number." },
+          "text": { "type": "string", "minLength": 1 }
+        }
+      },
+      "description": "What a reader needs to know to read this client's numbers. Shown next to them."
+    }
+  },
+  "$defs": {
+    "point": { "type": "array", "items": { "type": "integer" }, "minItems": 2, "maxItems": 2 },
+    "rect": { "type": "array", "items": { "type": "integer" }, "minItems": 4, "maxItems": 4 }
+  }
+}

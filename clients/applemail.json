@@ -1,0 +1,50 @@
+{
+  "$schema": "../schema/client.schema.json",
+  "id": "applemail",
+  "name": "Apple Mail",
+  "vendor": "Apple",
+  "homepage": "https://support.apple.com/guide/mail/welcome/mac",
+  "platform": "macos",
+  "source": "closed",
+  "maintainers": ["wes"],
+  "vendor_maintained": false,
+  "install": "Ships with macOS.",
+  "app": {
+    "path": "/System/Applications/Mail.app",
+    "bundle_id": "com.apple.mail",
+    "process": "Mail",
+    "window_title": "Inbox"
+  },
+  "account": [
+    "Run `./mailbench account applemail`, which adds the account through Mail's own scripting interface. It asks once for permission to control Mail.",
+    "Or by hand: Mail ▸ Add Account ▸ Other Mail Account. It will fail to guess the settings; on the manual sheet set the IMAP host and port and turn TLS off.",
+    "Let it sync on its own. Mailbox ▸ Rebuild is not wanted."
+  ],
+  "parity": [
+    "Apple Mail downloads every message in full by default. Nothing to change."
+  ],
+  "reset": [
+    "Delete the Bench account (Mail ▸ Settings ▸ Accounts ▸ −), then quit Mail.",
+    "Press Enter here, then add the account again with `./mailbench account applemail` in another terminal."
+  ],
+  "layout": {
+    "status": "verified",
+    "verified": { "version": "16.0", "os": "macOS 15.4", "date": "2026-10" },
+    "note": "80pt two-line rows, list between x 200 and 600, reader to the right, search in the toolbar.",
+    "row": [420, 340],
+    "row_dy": 80,
+    "reader": [780, 120, 580, 700],
+    "list": [210, 60, 385, 800],
+    "search": { "field": [1290, 27], "clear": "cmd+a,backspace", "leave": "escape" }
+  },
+  "caveats": [
+    {
+      "metric": "disk",
+      "text": "Excludes the Envelope Index (~/Library/Mail/V*/MailData), which Mail shares across every account and cannot be attributed to this one."
+    },
+    {
+      "metric": "search",
+      "text": "Apple Mail searches through Spotlight. The time is what a person waits for, not a comparison of search engines."
+    }
+  ]
+}

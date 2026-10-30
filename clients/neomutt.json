@@ -1,0 +1,42 @@
+{
+  "$schema": "../schema/client.schema.json",
+  "id": "neomutt",
+  "name": "NeoMutt",
+  "vendor": "The NeoMutt Team",
+  "homepage": "https://neomutt.org",
+  "platform": "macos",
+  "source": "open",
+  "maintainers": ["wes"],
+  "vendor_maintained": false,
+  "install": "`brew install neomutt`.",
+  "app": {
+    "app_name": "Ghostty",
+    "process": "neomutt",
+    "window_title": "neomutt",
+    "version_command": "neomutt -v 2>/dev/null | head -1"
+  },
+  "account": [
+    "`neomutt -F harness/neomuttrc`, in a Ghostty window sized to the benchmark window. No setup: the rc file points it at the server and keeps its caches in ~/mailbench/neomutt."
+  ],
+  "parity": [
+    "neomutt caches headers and fetches bodies when they are opened; the rc file sets both caches, so a message it has opened once is local from then on."
+  ],
+  "reset": [
+    "Quit neomutt and delete ~/mailbench/neomutt.",
+    "Press Enter here, then start it again."
+  ],
+  "store": "~/mailbench/neomutt",
+  "layout": {
+    "status": "unverified",
+    "note": "A terminal client has no bundle of its own: the instrument finds the terminal hosting it by name, and the window title is set by neomutt. Launch and quit are not measured, because they would be the terminal's.",
+    "row": [400, 200],
+    "row_dy": 18,
+    "reader": [20, 60, 1360, 800],
+    "list": [20, 60, 1360, 800]
+  },
+  "caveats": [
+    {
+      "text": "In the comparison for the floor, not the middle: a terminal client with no compositor, no layout engine and no list to virtualize is roughly the fastest a mail client can be on the hardware."
+    }
+  ]
+}

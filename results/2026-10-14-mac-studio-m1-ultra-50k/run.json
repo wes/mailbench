@@ -1,0 +1,65 @@
+{
+  "$schema": "../../schema/run.schema.json",
+  "id": "2026-10-14-mac-studio-m1-ultra-50k",
+  "date": "2026-10-14",
+  "corpus": {
+    "version": "spool-bench-2026-10",
+    "name": "50k",
+    "messages": 50000,
+    "digest": null,
+    "verified": false,
+    "note": "The generator this repository started from, before it was made deterministic: the same messages, folders and seed as mailbench-v1, but dated from the day it was generated and with Spool-named MIME boundaries and one header. Close to mailbench-v1, and still a different mailbox: runs on the two do not go in one table."
+  },
+  "machine": {
+    "name": "Mac Studio",
+    "model_id": null,
+    "cpu": "Apple M1 Ultra",
+    "cores": null,
+    "memory_gb": null,
+    "os": "macOS 15.4",
+    "display": "1920 × 1080 at 60 Hz",
+    "display_hz": 60,
+    "power": "ac"
+  },
+  "harness": {
+    "version": "spool/bench, October 2026 (before it moved here)",
+    "window": "1400x900",
+    "runs": 20,
+    "search_term": "postmortem"
+  },
+  "submitted_by": "wes",
+  "affiliations": [
+    "spool"
+  ],
+  "source": {
+    "kind": "imported",
+    "url": "https://joedesigns.com/spool/benchmarks",
+    "note": "Transcribed from Spool's benchmark page, where these runs were first published. The raw harness output is on the machine that measured them and has not been added to this repository yet; until it is, these are the only numbers here that CI cannot regenerate from the instrument's own lines."
+  },
+  "calibration": {
+    "overhead_ms": 28,
+    "floor_ms": 45,
+    "note": "As published with these results: one or two frames of the 60 Hz display, plus capture. The raw calibration was not kept with them."
+  },
+  "parity": {
+    "mailflare": {
+      "full": false,
+      "held": "300 messages, the newest 50 in each of six folders",
+      "note": "Mailflare fetches only the newest 50 messages in each folder, and older mail as the list is scrolled. The other clients held all 50,000."
+    },
+    "thunderbird": {
+      "full": false,
+      "held": "About 95% (everything but Junk and Trash)",
+      "note": "Thunderbird keeps no offline copy of Junk and Trash by default. The rest of the mailbox it held in full."
+    }
+  },
+  "notes": [
+    {
+      "title": "Mailflare was measured later.",
+      "body": "On 30 October, on the same machine and the same server; the other five on 14 October.",
+      "clients": [
+        "mailflare"
+      ]
+    }
+  ]
+}

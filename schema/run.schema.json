@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mailben.ch/schema/run.schema.json",
+  "title": "One run: one machine, one corpus, the clients measured on it",
+  "description": "results/<id>/run.json. `./mailbench submit` writes it; edit notes and parity by hand. The numbers are in summary.json, which is generated from raw/.",
+  "type": "object",
+  "required": ["id", "date", "corpus", "machine", "harness", "submitted_by", "affiliations", "source"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$", "description": "Matches the directory name." },
+    "date": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$", "description": "The day the first client was measured." },
+    "corpus": {
+      "type": "object",
+      "required": ["version", "name", "messages", "verified"],
+      "additionalProperties": false,
+      "properties": {
+        "version": { "type": "string" },
+        "name": { "type": "string" },
+        "messages": { "type": "integer" },
+        "digest": { "type": ["string", "null"] },
+        "verified": { "type": "boolean", "description": "The served corpus matched the published digest." },
+        "note": { "type": "string" }
+      }
+    },
+    "machine": {
+      "type": "object",
+      "required": ["name", "cpu", "os", "display_hz"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "description": "Mac Studio, MacBook Pro 14-inch…" },
+        "model_id": { "type": ["string", "null"] },
+        "cpu": { "type": "string" },
+        "cores": { "type": ["integer", "null"] },
+        "memory_gb": { "type": ["number", "null"] },
+        "os": { "type": "string" },
+        "display": { "type": ["string", "null"] },
+        "display_hz": { "type": "integer", "description": "The instrument cannot see more often than this." },
+        "power": { "enum": ["ac", "battery", null] }
+      }
+    },
+    "harness": {
+      "type": "object",
+      "required": ["version"],
+      "additionalProperties": false,
+      "properties": {
+        "version": { "type": "string", "description": "The commit of this repository that measured it." },
+        "window": { "type": "string" },
+        "runs": { "type": "integer" },
+        "search_term": { "type": "string" }
+      }
+    },
+    "submitted_by": { "type": "string", "pattern": "^[A-Za-z0-9-]+$", "description": "GitHub handle." },
+    "affiliations": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Ids of clients the submitter works on or for. Required, and shown next to the run; [] for none."
+    },
+    "source": {
+      "type": "object",
+      "required": ["kind"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": { "enum": ["harness", "imported"] },
+        "url": { "type": "string" },
+        "note": { "type": "string" }
+      }
+    },
+    "calibration": {
+      "type": "object",
+      "description": "Only for an imported run without raw calibration. Otherwise summary.json has it.",
+      "additionalProperties": false,
+      "properties": {
+        "overhead_ms": { "type": "number" },
+        "floor_ms": { "type": "number" },
+        "note": { "type": "string" }
+      }
+    },
+    "parity": {
+      "type": "object",
+      "description": "By client id: whether it held the whole mailbox. Absent means it did.",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["full"],
+        "additionalProperties": false,
+        "properties": {
+          "full": { "type": "boolean" },
+          "held": { "type": "string" },
+          "note": { "type": "string" }
+        }
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["title", "body"],
+        "additionalProperties": false,
+        "properties": {
+          "title": { "type": "string" },
+          "body": { "type": "string" },
+          "clients": { "type": "array", "items": { "type": "string" } },
+          "metric": { "type": "string" }
+        }
+      }
+    }
+  }
+}

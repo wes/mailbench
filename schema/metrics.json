@@ -1,0 +1,121 @@
+{
+  "$comment": "What is measured, and where each number comes from in the harness's output. harness/summarize.py and the website both read this file, so a metric means the same thing everywhere it appears. Lower is better for every one.",
+  "metrics": [
+    {
+      "key": "open",
+      "title": "Open a message",
+      "what": "Click a message in the list until the reader has finished drawing it.",
+      "unit": "ms",
+      "screen": true,
+      "source": {
+        "summary": "open-message",
+        "field": "settle_ms_median",
+        "first": "first_ms_median"
+      }
+    },
+    {
+      "key": "next",
+      "title": "Next message",
+      "what": "Press ↓ until the next message has finished drawing.",
+      "unit": "ms",
+      "screen": true,
+      "source": {
+        "summary": "next-message",
+        "field": "settle_ms_median",
+        "first": "first_ms_median"
+      }
+    },
+    {
+      "key": "search",
+      "title": "Search",
+      "what": "Type a word into the search field until the results have finished drawing. Typing it is part of the time, about 80 ms.",
+      "unit": "ms",
+      "screen": true,
+      "source": {
+        "summary": "search",
+        "field": "settle_ms_median",
+        "first": "first_ms_median"
+      }
+    },
+    {
+      "key": "launch",
+      "title": "Launch",
+      "what": "Open the app until the inbox is on screen and has stopped changing. Warm: the app has run before and its files are cached.",
+      "unit": "ms",
+      "screen": true,
+      "source": {
+        "summary": "launch",
+        "field": "settle_ms_median",
+        "first": "first_ms_median"
+      }
+    },
+    {
+      "key": "quit",
+      "title": "Quit",
+      "what": "Ask the app to quit, as the menu item does, until its process has exited. The process is checked every 2 ms.",
+      "unit": "ms",
+      "screen": false,
+      "source": {
+        "summary": "quit",
+        "field": "first_ms_median"
+      },
+      "resolution_ms": 2
+    },
+    {
+      "key": "scroll",
+      "title": "Scroll",
+      "what": "Thirty notches of the scroll wheel until the list stops moving. Posting the thirty notches takes about 240 ms of it.",
+      "unit": "ms",
+      "screen": true,
+      "source": {
+        "summary": "scroll",
+        "field": "settle_ms_median",
+        "first": "first_ms_median"
+      }
+    },
+    {
+      "key": "memory",
+      "title": "Memory",
+      "what": "Physical footprint after the tests, as Activity Monitor counts it, including the helper processes macOS charges to the app (WebKit, GPU, networking).",
+      "unit": "MB",
+      "screen": false,
+      "source": {
+        "static": "memory.total_kb",
+        "divide": 1024
+      }
+    },
+    {
+      "key": "cpu",
+      "title": "Idle CPU",
+      "what": "Share of one core used over ten seconds of the app sitting idle after the tests.",
+      "unit": "%",
+      "decimals": 1,
+      "screen": false,
+      "source": {
+        "static": "idle_cpu_pct"
+      }
+    },
+    {
+      "key": "sync",
+      "title": "First sync",
+      "what": "Downloading the whole mailbox into an empty store, measured at the server: from the first busy second to the last. Indexing after the last byte is not included.",
+      "unit": "s",
+      "screen": false,
+      "source": {
+        "sync": "seconds"
+      }
+    },
+    {
+      "key": "disk",
+      "title": "Store on disk",
+      "what": "Apparent size of the client's local store for the benchmark account. Not like-for-like: clients keep different things (the original message, parsed fields, a search index), so this is listed, never ranked.",
+      "unit": "MB",
+      "screen": false,
+      "ranked": false,
+      "source": {
+        "static": "store_kb",
+        "divide": 1024
+      }
+    }
+  ]
+}

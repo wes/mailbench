@@ -1,0 +1,21 @@
+name: Propose a change to the method
+description: What is measured, or how. Discussed before it is made.
+labels: [method]
+body:
+  - type: textarea
+    id: change
+    attributes:
+      label: The change
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: What the current method gets wrong, or cannot see.
+    validations:
+      required: true
+  - type: textarea
+    id: effect
+    attributes:
+      label: Which results it would change, and how

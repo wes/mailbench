@@ -1,0 +1,34 @@
+name: A result looks wrong
+description: A number, a coordinate, a setting or a word that seems wrong, or favours a client.
+labels: [result]
+body:
+  - type: input
+    id: run
+    attributes:
+      label: Which run
+      description: The run's id or its URL on mailben.ch.
+      placeholder: 2026-10-15-mac-studio-m1-ultra-250k
+    validations:
+      required: true
+  - type: input
+    id: client
+    attributes:
+      label: Which client, and which test
+      placeholder: Thunderbird, search
+  - type: textarea
+    id: what
+    attributes:
+      label: What looks wrong
+      description: What you expected, and why. Snapshots, your own runs and the raw output are all welcome.
+    validations:
+      required: true
+  - type: dropdown
+    id: affiliation
+    attributes:
+      label: Do you work on, or for, any client in this run?
+      description: It does not change how this is handled. Readers deserve to know.
+      options:
+        - "No"
+        - "Yes — I'll say which below"
+    validations:
+      required: true

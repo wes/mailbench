@@ -1,0 +1,47 @@
+{
+  "$schema": "../schema/client.schema.json",
+  "id": "canary",
+  "name": "Canary Mail",
+  "vendor": "Canary Mail",
+  "homepage": "https://canarymail.io",
+  "platform": "macos",
+  "source": "closed",
+  "maintainers": ["wes"],
+  "vendor_maintained": false,
+  "install": "From canarymail.io or the Mac App Store.",
+  "app": {
+    "path": "/Applications/Canary Mail.app",
+    "bundle_id": "io.canarymail.mac",
+    "process": "Canary Mail",
+    "window_title": "Inbox"
+  },
+  "account": [
+    "Add an IMAP account by hand: host 127.0.0.1, the corpus's port, no encryption. Canary stops at a dialog if the server has no Drafts folder; the corpus has one."
+  ],
+  "parity": [
+    "Close the Copilot panel (the AI button) and dismiss the Discover cards, so the reader has the same room as every other client's."
+  ],
+  "reset": [
+    "Remove the Bench account and quit Canary.",
+    "Press Enter here, then add the account again."
+  ],
+  "layout": {
+    "status": "verified",
+    "verified": { "version": "5.26", "os": "macOS 15.4", "date": "2026-10" },
+    "note": "91pt conversation rows; the reader to the right shows the whole conversation. Search is the toolbar field, as-you-type, across every folder. The magnifier toggles the field, so every run starts from a known state: ‹ Back closes it and returns to the inbox, and the magnifier then opens it empty. No select-all, Backspace or Escape, because Canary has single-key shortcuts in the list (e archives).",
+    "row": [480, 175],
+    "row_dy": 91,
+    "reader": [690, 60, 680, 800],
+    "list": [325, 105, 330, 790],
+    "search": {
+      "field": [1101, 27],
+      "prepare": "click@350:72,wait@800,click@1101:27,wait@500",
+      "reset": "click@350:72"
+    }
+  },
+  "caveats": [
+    {
+      "text": "Measured with the Copilot panel closed and the Discover cards dismissed, so its reader had the same room as everyone else's."
+    }
+  ]
+}

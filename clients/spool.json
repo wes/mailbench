@@ -1,0 +1,43 @@
+{
+  "$schema": "../schema/client.schema.json",
+  "id": "spool",
+  "name": "Spool",
+  "vendor": "Joe Designs",
+  "homepage": "https://joedesigns.com/spool",
+  "platform": "macos",
+  "source": "closed",
+  "maintainers": ["wes"],
+  "vendor_maintained": true,
+  "install": "`./mailbench install spool` downloads the released Spool.dmg, from the same URL a person uses, into /Applications.",
+  "app": {
+    "path": "/Applications/Spool.app",
+    "bundle_id": "com.joedesigns.spool",
+    "process": "spool"
+  },
+  "launch_env": {
+    "XDG_CONFIG_HOME": "{profile}/config",
+    "XDG_DATA_HOME": "{profile}/data"
+  },
+  "account": [
+    "`./mailbench account spool` writes the account into a benchmark profile of its own (Spool honours XDG_CONFIG_HOME and XDG_DATA_HOME), so nothing here can touch real mail.",
+    "`./mailbench up spool` launches Spool on that profile."
+  ],
+  "parity": [
+    "The account is written with initial_limit = 1000000. The default of 2,000 would sync a fraction of what the other clients sync."
+  ],
+  "reset": [
+    "Automatic: `./mailbench sync spool` moves the profile's data aside (never deletes it) and launches Spool on an empty store."
+  ],
+  "store": "{profile}/data/spool",
+  "layout": {
+    "status": "verified",
+    "verified": { "version": "0.1.10", "os": "macOS 15.4", "date": "2026-10" },
+    "note": "27pt conversation rows, reader to the right of the list.",
+    "row": [420, 301],
+    "row_dy": 54,
+    "reader": [790, 90, 580, 700],
+    "list": [225, 70, 540, 800],
+    "search": { "field": [1250, 18], "clear": "cmd+a,backspace", "leave": "escape" }
+  },
+  "caveats": []
+}

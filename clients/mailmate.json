@@ -1,0 +1,76 @@
+{
+  "$schema": "../schema/client.schema.json",
+  "id": "mailmate",
+  "name": "MailMate",
+  "vendor": "Freron Software",
+  "homepage": "https://freron.com",
+  "platform": "macos",
+  "source": "closed",
+  "maintainers": [
+    "wes"
+  ],
+  "vendor_maintained": false,
+  "install": "`brew install --cask mailmate`. The trial is fully functional.",
+  "app": {
+    "path": "/Applications/MailMate.app",
+    "bundle_id": "com.freron.MailMate",
+    "process": "MailMate",
+    "window_title": "Inbox"
+  },
+  "account": [
+    "Settings ▸ Accounts ▸ +. Host 127.0.0.1, the corpus's port, Security None."
+  ],
+  "parity": [
+    "MailMate keeps full messages locally by default. Nothing to change."
+  ],
+  "reset": [
+    "Remove the Bench account in Settings ▸ Accounts and quit MailMate.",
+    "Press Enter here, then add the account again."
+  ],
+  "store": "~/Library/Application Support/MailMate",
+  "layout": {
+    "status": "verified",
+    "verified": {
+      "version": "1.13.2",
+      "os": "macOS 15.4",
+      "date": "2026-10"
+    },
+    "note": "Default layout: the list is a band across the top (18pt rows) and the reader is below it. The main window's title always carries the mailbox name; a stray Return opens a message in a window of its own, which the harness closes.",
+    "row": [
+      450,
+      149
+    ],
+    "row_dy": 36,
+    "reader": [
+      210,
+      330,
+      1180,
+      560
+    ],
+    "list": [
+      210,
+      88,
+      1180,
+      220
+    ],
+    "search": {
+      "field": [
+        1230,
+        41
+      ],
+      "submit": true,
+      "clear": "cmd+a,backspace,escape",
+      "leave": "escape"
+    }
+  },
+  "caveats": [
+    {
+      "metric": "search",
+      "text": "MailMate searches when Return is pressed, not as you type, so its time includes the Return."
+    },
+    {
+      "metric": "disk",
+      "text": "The whole MailMate support directory, which on a machine with other accounts includes them too."
+    }
+  ]
+}

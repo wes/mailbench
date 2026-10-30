@@ -1,0 +1,11 @@
+node_modules
+dist
+.env*
+*.tsbuildinfo
+.cache
+.DS_Store
+*.pem
+# Built on the machine that runs them, never committed: see harness/run.sh.
+harness/bin/
+__pycache__/
+*.pyc
