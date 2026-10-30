@@ -12,8 +12,8 @@ jobs:
     # instrument did not write.
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.9"
       - name: Validate clients and results
@@ -29,7 +29,7 @@ jobs:
     # The Swift instrument and calibration target compile on macOS.
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: swiftc -O harness/measure.swift -o /tmp/measure
       - run: swiftc -O harness/calibrate.swift -o /tmp/calibrate
       - name: Harness tests on macOS
@@ -38,8 +38,8 @@ jobs:
   site:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
